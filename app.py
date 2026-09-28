@@ -34,21 +34,20 @@ if total_weight != 100:
     st.sidebar.warning(f"⚠️ Total weight must equal 100%. Current: {total_weight}%")
 
 # --- STEP 3: VENDOR BASELINE RATINGS ---
-# Data points synthesized from official platforms & performance audits
 vendors = {
     "Harvey": {"Lease": 7.5, "Infra": 7.0, "Research": 9.5, "Eco": 8.0},
     "Legora": {"Lease": 9.0, "Infra": 8.5, "Research": 7.0, "Eco": 9.0}
 }
 
-# --- STEP 4: SCORES CALCULATION ---
+# --- STEP 4: SCORES CALCULATION WITH BOUNDS SAFETY ---
 def calculate_score(vendor_data):
     weighted = (
         (vendor_data["Lease"] * w_lease) +
         (vendor_data["Infra"] * w_infra) +
         (vendor_data["Research"] * w_research) +
         (vendor_data["Eco"] * w_eco)
-    ) / 10
-    return round(weighted, 2)
+    ) / 100  # Fixed divisor to maintain baseline metric scale
+    return min(max(round(weighted, 2), 0.0), 10.0)
 
 harvey_final = calculate_score(vendors["Harvey"])
 legora_final = calculate_score(vendors["Legora"])
@@ -57,10 +56,11 @@ legora_final = calculate_score(vendors["Legora"])
 col1, col2 = st.columns(2)
 with col1:
     st.metric(label="Harvey Strategic Fit Score", value=f"{harvey_final} / 10")
-    st.progress(harvey_final / 10)
+    # Streamlit expects 0.0 to 1.0 for progress bar, so divide score by 10 with safety limits
+    st.progress(min(max(harvey_final / 10.0, 0.0), 1.0))
 with col2:
     st.metric(label="Legora Strategic Fit Score", value=f"{legora_final} / 10")
-    st.progress(legora_final / 10)
+    st.progress(min(max(legora_final / 10.0, 0.0), 1.0))
 
 # --- STEP 6: RADAR CHART GENERATION ---
 categories = ['Lease Ops', 'Infra/Utility', 'Deep Research', 'Ecosystem Fit']
@@ -75,7 +75,7 @@ fig.add_trace(go.Scatterpolar(
     theta=categories, fill='toself', name='Legora Capabilities'
 ))
 fig.add_trace(go.Scatterpolar(
-    r=[w_lease/10, w_infra/10, w_research/10, w_eco/10],
+    r=[w_lease/10.0, w_infra/10.0, w_research/10.0, w_eco/10.0],
     theta=categories, mode='lines+markers', name='Client Custom Requirement Profile',
     line=dict(color='red', dash='dash')
 ))
@@ -103,4 +103,3 @@ with col_src2:
     st.markdown("- [Legora vs Harvey Feature Mapping](https://fusiontaxlaw.com) (Direct System Capabilities & Specializations)")
     st.markdown("- [AI-Native Legal Ontology Release](https://legora.com) (Advanced Statutory Citator Tracking)")
     st.markdown("- [ServiceNow Legal Service Delivery Integration Context](https://servicenow.com) (Enterprise Workflow Layering)")
-

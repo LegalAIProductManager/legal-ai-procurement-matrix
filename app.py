@@ -79,7 +79,7 @@ fig.add_trace(go.Scatterpolar(
     line=dict(color='red', dash='dash')
 ))
 
-fig.update_layout(polar=dict(radialaxis=dict(visible=True, range=)), showlegend=True)
+fig.update_layout(polar=dict(radialaxis=dict(visible=True, range=[0, 10])), showlegend=True)
 st.plotly_chart(fig, use_container_width=True)
 
 # --- NEW STEP: RFI VS RFP VENDOR MATURITY MODULE ---

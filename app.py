@@ -82,45 +82,56 @@ fig.add_trace(go.Scatterpolar(
 fig.update_layout(polar=dict(radialaxis=dict(visible=True, range=[0, 10])), showlegend=True)
 st.plotly_chart(fig, use_container_width=True)
 
-# --- NEW STEP: RFI VS RFP VENDOR MATURITY MODULE ---
+# --- NEW STEP: INFOSEC, PRIVACY, & CLOUD ARCHITECTURE DUE DILIGENCE ---
 st.markdown("---")
-st.markdown("### 📋 Market Intelligence Discovery (RFI) vs. Selection (RFP)")
+st.markdown("### 🔒 InfoSec, Privacy, & Cloud Infrastructure Audit")
 st.markdown(
-    "How information requests vary between general capability discovery (RFI) and hard contractual binding (RFP). "
-    "Review common vs. distinct points both vendors face when responding to enterprise requests:"
+    "Evaluating deep data governance parameters required to pass internal corporate InfoSec screening. "
+    "This matrix details deployment architecture capabilities and maps critical unaddressed risks:"
 )
 
+sec_col1, sec_col2 = st.columns(2)
+with sec_col1:
+    st.markdown("#### ☁️ Cloud & Data Sovereignty Architecture")
+    st.markdown("- **Harvey BYOC / Single-Tenant Support:** Supports highly customized, isolated **dedicated tenant instances** for enterprise deployments to meet strict financial/government client parameters.")
+    st.markdown("- **Legora Azure Integration:** Built directly on top of enterprise-grade **Azure OpenAI cloud isolation** infrastructures, leveraging standard corporate Microsoft security perimeters natively.")
+    st.markdown("- **Data Retention Rules:** Both platforms guarantee zero-data retention pipelines where zero metadata or transactional files are cached to train base models.")
+with sec_col2:
+    st.markdown("#### ⚠️ Unaddressed Security Risks & Gaps")
+    st.markdown("- **The Hidden Sub-Processor Trap:** While foundational data stays isolated, legal apps frequently bounce requests to external sub-processors for optical character recognition (OCR) or document translation. *Audit Requirement: Verify sub-processor logs.*")
+    st.markdown("- **Model Drift Integrity:** Automated updates can alter foundational model behavior without prior disclosure. If a security model regresses, it can silently introduce compliance risks into standard contract reviews.")
+    st.markdown("- **Prompt Injection Exploitations:** Malicious or poorly formatted third-party contract files uploaded to the systems can trigger prompt injections, forcing the tool to leak adjacent session information.")
+
+# --- STEP 7: MARKET DISCOVERY (RFI) VS SELECTION (RFP) ---
+st.markdown("---")
+st.markdown("### 📋 Market Intelligence Discovery (RFI) vs. Selection (RFP)")
 rfi_col1, rfi_col2 = st.columns(2)
 with rfi_col1:
     st.markdown("#### 🤝 Commonly Compelled Items (Shared Baselines)")
-    st.markdown("- **Enterprise Data Isolation:** Both vendors are forced to guarantee that no user inputs or tenant lease files are used to train baseline public AI models.")
-    st.markdown("- **SOC 2 Type II Compliance:** Basic infrastructure requirement to clear baseline corporate risk screening.")
-    st.markdown("- **Native MS Word Add-ins:** Both platforms must provide a sidepanel inside Word where attorneys spend their active workdays.")
+    st.markdown("- **Enterprise Data Isolation:** Both vendors guarantee no user inputs are used to train public models.")
+    st.markdown("- **SOC 2 Type II Compliance:** Basic requirement to clear baseline corporate risk screening.")
+    st.markdown("- **Native MS Word Add-ins:** Both platforms must provide custom sidepanels inside Microsoft Word workspace suites.")
 with rfi_col2:
     st.markdown("#### ⚡ Distinctly Compelled Items (The Divergence)")
-    st.markdown("- **Harvey Customization:** Heavily requested to detail their fine-tuning layers and open-weight custom model costs for firm memory [Mon, Sep 28, 2026].")
-    st.markdown("- **Legora Customization:** Heavily pushed on table export limits, cell data structure support, and their exact API mapping schema to ServiceNow Legal tables [Tue, Sep 15, 2026; Mon, Sep 28, 2026].")
+    st.markdown("- **Harvey Customization:** Heavily requested to detail their fine-tuning layers and open-weight custom model costs for firm memory.")
+    st.markdown("- **Legora Customization:** Heavily pushed on table export limits, cell data structure support, and their exact API mapping schema to ServiceNow Legal tables.")
 
-# --- NEW STEP: IMPLEMENTATION PLAYBOOK MODULE ---
+# --- STEP 8: OPERATIONAL IMPLEMENTATION PLAYBOOK ---
 st.markdown("---")
 st.markdown("### ⚙️ Operational Implementation Playbook")
-st.markdown("Enterprise software deployments fail without clear technical change management. This framework outlines delivery similarities and functional variances:")
-
 imp_col1, imp_col2 = st.columns(2)
 with imp_col1:
     st.markdown("#### 🔄 Shared Implementation Dynamics")
-    st.markdown("- **Tenant Architecture Provisioning:** Both require coordinating with corporate IT security teams to establish isolated enterprise spaces (Azure cloud environments or secure cloud buckets).")
-    st.markdown("- **Attorney Change Management:** Both require structured training cycles. Attorneys frequently reject plain browser windows and demand intuitive native workspace options.")
+    st.markdown("- **Tenant Architecture Provisioning:** Requires establishing isolated enterprise environments (Azure cloud spaces or secure buckets) with IT security.")
+    st.markdown("- **Attorney Change Management:** Structured training cycles are mandatory to bridge the adoption gap from plain chat bars to native add-in workflows.")
 with imp_col2:
     st.markdown("#### ⚠️ Divergent Implementation Risks")
-    st.markdown("- **Harvey Framework:** Implementation leans heavily on internal context mapping—feeding thousands of firm documents into their system to train the long-horizon agentic memory engine [Mon, Sep 28, 2026].")
-    st.markdown("- **Legora Framework:** Implementation is integration-heavy—requiring data engineers to map Legora’s native legal data tables directly onto existing corporate metadata fields and ServiceNow workflows [Tue, Sep 15, 2026; Mon, Sep 28, 2026].")
+    st.markdown("- **Harvey Framework:** Leans heavily on knowledge management—feeding thousands of corporate files into their systems to map firm memory layers safely.")
+    st.markdown("- **Legora Framework:** Leans heavily on integration engineering—requiring data configurations to map native legal tables onto active corporate ServiceNow structures.")
 
-# --- STEP 7: LIVE CLIENT RFP GENERATION WORKSPACE ---
+# --- STEP 9: LIVE CLIENT RFP GENERATION WORKSPACE ---
 st.markdown("---")
 st.markdown("### 🛠️ Client Request for Proposal (RFP) Custom Workspace Engine")
-st.markdown("Customize this module by inserting unique organization requirements to build your quantitative selection template:")
-
 with st.expander("📝 Click to View/Edit Your 10-Question RFP Matrix", expanded=False):
     default_rfp = [
         "Does the system support dedicated cloud tenant isolation to satisfy sovereign customer protocols?",
@@ -134,14 +145,11 @@ with st.expander("📝 Click to View/Edit Your 10-Question RFP Matrix", expanded
         "Does the model support localized compliance mapping against EU CSRD sustainability frameworks?",
         "How are multi-step agentic workflows logged inside visible system audit trails?"
     ]
-    
     rfp_scores_h = []
     rfp_scores_l = []
-    
     for i in range(10):
         st.markdown(f"**📍 RFP Requirement #{i+1}**")
         q_text = st.text_input(f"Define Requirement / Question #{i+1}:", value=default_rfp[i], key=f"rfp_q_{i}")
-        
         c1, c2 = st.columns(2)
         with c1:
             h_s = st.slider(f"Harvey Score for Q#{i+1} (1=Fail, 5=Pass)", 1, 5, 4, key=f"rfp_h_s_{i}")
@@ -150,27 +158,10 @@ with st.expander("📝 Click to View/Edit Your 10-Question RFP Matrix", expanded
             l_s = st.slider(f"Legora Score for Q#{i+1} (1=Fail, 5=Pass)", 1, 5, 4, key=f"rfp_l_s_{i}")
             rfp_scores_l.append(l_s)
         st.markdown("<br>", unsafe_allow_html=True)
-        
     harvey_rfp_avg = round(sum(rfp_scores_h) / 10, 2)
     legora_rfp_avg = round(sum(rfp_scores_l) / 10, 2)
-    
     st.markdown("#### 📊 Dynamic RFP Response Summary")
     st.write(f"**Harvey RFP Evaluation Average:** {harvey_rfp_avg} / 5.0")
     st.write(f"**Legora RFP Evaluation Average:** {legora_rfp_avg} / 5.0")
 
-# --- STEP 8: VERIFICATION SANDBOX & PILOT TEST LOGS ---
-st.markdown("---")
-st.markdown("### 🧪 Operational Verification Sandbox & Pilot Test Audits")
-tab1, tab2, tab3 = st.tabs(["📋 Test 1: Bulk Lease Extraction", "⚡ Test 2: Infrastructure PPA Compliance", "⚙️ Test 3: System Interoperability"])
-with tab1:
-    st.write("**Scenario Prompt:** Extract metadata (Megawatt caps, SLA metrics, cross-border indemnity) from 5 multi-facility colocation leases.")
-    col_t1_h, col_t1_l = st.columns(2)
-    with col_t1_h:
-        st.markdown("**Harvey Results Log:**")
-        st.checkbox("Accurately converted kW to MW", value=True, key="h_t1_1")
-        st.checkbox("Separated cross-border jurisdictions", value=False, key="h_t1_2")
-        st.text_area("Custom Harvey Execution Notes:", "Model struggled with multi-column layout on German framework.", key="h_txt1")
-    with col_t1_l:
-        st.markdown("**Legora Results Log:**")
-        st.checkbox("Accurately converted kW to MW", value=True, key="l_t1_1")
-        st.checkbox("Separated cross-border jurisdictions", value=True, key="l_t1_2")
+# --- STEP 10: VERIFICATION SANDBOX & PILOT TEST LOGS ---
